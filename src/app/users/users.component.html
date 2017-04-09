@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <h1>Users</h1>
+        <a
+            class="btn btn-primary"
+            [routerLink]="['/users/new']"
+        >Add User</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td><i class="fa fa-trash-o"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
