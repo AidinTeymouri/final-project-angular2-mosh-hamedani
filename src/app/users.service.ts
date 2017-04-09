@@ -5,13 +5,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UsersService {
+    
+    url = '';
 
-    constructor(private http: Http) {}
+    constructor(private http: Http) {
+        this.url = 'https://jsonplaceholder.typicode.com/users';
+    }
 
     getUsers() {
-        const url = 'https://jsonplaceholder.typicode.com/users';
-        return this.http.get(url)
+        return this.http.get(this.url)
             .map(users => users.json());
+    }
+    
+    saveUser(user) {
+        return this.http.post(this.url, user)
+            .map(data => data.json());
     }
 
 }
