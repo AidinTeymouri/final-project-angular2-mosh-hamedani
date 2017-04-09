@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {emailValidator} from '../email.validator';
 import {FormInterface} from '../prevent-unsaved-changes-guard.service';
 import {UsersService} from '../users.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../user';
 
 @Component({
     selector: 'app-form',
@@ -12,13 +13,13 @@ import {Router} from '@angular/router';
 })
 export class FormComponent implements OnInit, FormInterface {
     form: FormGroup;
+    title;
+    user = new User();
 
-    constructor(
-        private fb: FormBuilder,
-        private usersService: UsersService,
-        private router: Router
-    ) {
-        this.createForm();
+    constructor(private fb: FormBuilder,
+                private usersService: UsersService,
+                private router: Router,
+                private route: ActivatedRoute) {
     }
 
     createForm() {
@@ -36,12 +37,32 @@ export class FormComponent implements OnInit, FormInterface {
     }
 
     ngOnInit() {
+        this.createForm();
+        this.route.params.subscribe(params => {
+            if (!params['id']) {
+                this.title = 'Add user';
+                return;
+            } else {
+                const id = params['id'];
+                this.usersService.getUser(id)
+                    .subscribe(user => {
+                            this.user = user;
+                            this.title = 'Edit user';
+                        },
+                        response => {
+                            if (response.status === 404) {
+                                this.router.navigate(['/home']);
+                            }
+                        });
+            }
+            
+        });
     }
-    
+
     hasUnsavedChanges() {
         return this.form.dirty;
     }
-    
+
     onSubmit(form) {
         this.usersService.saveUser(form.value)
             .subscribe(data => {

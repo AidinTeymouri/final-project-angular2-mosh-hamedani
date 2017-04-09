@@ -15,6 +15,7 @@ const routes: Routes = [
         component: FormComponent,
         canDeactivate: [PreventUnsavedChangesGuardService]
     },
+    {path: 'users/:id', component: FormComponent},
     {path: 'posts', component: PostsComponent},
     {path: '**', redirectTo: '/home'}
 ];

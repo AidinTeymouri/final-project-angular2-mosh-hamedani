@@ -21,5 +21,11 @@ export class UsersService {
         return this.http.post(this.url, user)
             .map(data => data.json());
     }
+    
+    getUser(id) {
+        console.log('...... id ....', id);
+        return this.http.get(`${this.url}/${id}`)
+            .map(data => data.json());
+    }
 
 }

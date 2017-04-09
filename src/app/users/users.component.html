@@ -18,7 +18,10 @@
                 <tr *ngFor="let user of users">
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
-                    <td><i class="fa fa-pencil-square-o"></i></td>
+                    <td><i
+                        class="fa fa-pencil-square-o"
+                        (click)="onEditClick(user)"
+                    ></i></td>
                     <td><i class="fa fa-trash-o"></i></td>
                 </tr>
             </tbody>
