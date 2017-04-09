@@ -11,6 +11,7 @@ import {PostsComponent} from './posts/posts.component';
 import {AppRoutingModule} from './routing/routing.module';
 import {UsersService} from './users.service';
 import {FormComponent} from './form/form.component';
+import {PreventUnsavedChangesGuardService} from './prevent-unsaved-changes-guard.service';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,7 @@ import {FormComponent} from './form/form.component';
         ReactiveFormsModule,
         AppRoutingModule
     ],
-    providers: [UsersService],
+    providers: [UsersService, PreventUnsavedChangesGuardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

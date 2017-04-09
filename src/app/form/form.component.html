@@ -2,7 +2,7 @@
     <div class="row">
         <h1>Add a User</h1>
         <div class="col-md-6 well">
-            <form [formGroup]="userForm">
+            <form [formGroup]="form">
                 <fieldset>
                     <legend>User</legend>
                     <div class="form-group">
@@ -12,7 +12,7 @@
                             formControlName="name"
                         >
                         <div class="alert alert-danger"
-                            *ngIf="userForm.controls.name.touched && !userForm.controls.name.valid"
+                            *ngIf="form.controls.name.touched && !form.controls.name.valid"
                         >
                             Name is required.
                         </div>
@@ -23,14 +23,14 @@
                             class="form-control" type="text" id="email"
                             formControlName="email"
                         >
-                        <div *ngIf="userForm.controls.email.errors">
+                        <div *ngIf="form.controls.email.errors">
                             <div class="alert alert-danger"
-                                 *ngIf="userForm.controls.email.touched && userForm.controls.email.errors.required"
+                                 *ngIf="form.controls.email.touched && form.controls.email.errors.required"
                             >
                                 Email is required.
                             </div>
                             <div class="alert alert-danger"
-                                 *ngIf="userForm.controls.email.touched && userForm.controls.email.errors.wrongEmail"
+                                 *ngIf="form.controls.email.touched && form.controls.email.errors.wrongEmail"
                             >
                                 Please type a valid email.
                             </div>
@@ -77,13 +77,13 @@
                 </fieldset>
                 <button
                     class="btn btn-primary"
-                    [disabled]="!userForm.valid"
+                    [disabled]="!form.valid"
                 >Save</button>
             </form>
         </div>
     </div>
 </div>
 
-<p>Form value: {{ userForm.value | json }}</p>
-<p>Form status: {{ userForm.status | json }}</p>
+<p>Form value: {{ form.value | json }}</p>
+<p>Form status: {{ form.status | json }}</p>
 
