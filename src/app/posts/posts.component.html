@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <h1>Posts</h1>
-        <div *ngIf="isLoading">
-            <i class="fa fa-spinner fa-spin fa-3x"></i>
+        <div>
+            <app-spinner [visible]="isLoading"></app-spinner>
         </div>
         <ul class="list-group">
             <li

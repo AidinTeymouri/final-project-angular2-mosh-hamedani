@@ -13,6 +13,7 @@ import {UsersService} from './users/users.service';
 import {FormComponent} from './form/form.component';
 import {PreventUnsavedChangesGuardService} from './prevent-unsaved-changes-guard.service';
 import {PostsService} from './posts/posts.service';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {PostsService} from './posts/posts.service';
         HomeComponent,
         UsersComponent,
         PostsComponent,
-        FormComponent
+        FormComponent,
+        SpinnerComponent
     ],
     imports: [
         BrowserModule,
