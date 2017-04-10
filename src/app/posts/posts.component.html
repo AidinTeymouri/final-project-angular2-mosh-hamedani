@@ -1,14 +1,32 @@
 <div class="container">
     <div class="row">
-        <h1>Posts</h1>
-        <div>
-            <app-spinner [visible]="isLoading"></app-spinner>
+        <h1 class="text-center">Posts</h1>
+        <div class="col-md-6">
+            <div>
+                <app-spinner [visible]="isLoading"></app-spinner>
+            </div>
+            <ul class="list-group posts">
+                <li
+                    *ngFor="let post of posts"
+                    class="list-group-item"
+                    [class.active]="selectedPost == post"
+                    (click)="onSelectPost(post)"
+                >{{post.title}}</li>
+            </ul>
         </div>
-        <ul class="list-group">
-            <li
-                *ngFor="let post of posts"
-                class="list-group-item">{{post.title}}</li>
-        </ul>
+        <div class="col-md-6">
+            <div
+                class="panel panel-default"
+                *ngIf="selectedPost"
+            >
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{selectedPost.title}}</h3>
+                </div>
+                <div class="panel-body">
+                    {{selectedPost.body}}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

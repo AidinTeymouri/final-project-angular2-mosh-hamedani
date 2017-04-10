@@ -9,6 +9,7 @@ import {PostsService} from './posts.service';
 export class PostsComponent implements OnInit {
     posts: string[];
     isLoading = true;
+    selectedPost;
 
     constructor(private postsService: PostsService) {
     }
@@ -21,6 +22,10 @@ export class PostsComponent implements OnInit {
                     this.posts = posts;
                 }, 500);
             });
+    }
+    
+    onSelectPost(post) {
+        this.selectedPost = post;
     }
 
 }
