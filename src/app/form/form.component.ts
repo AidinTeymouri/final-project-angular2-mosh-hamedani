@@ -14,6 +14,9 @@ import {User} from '../user';
 export class FormComponent implements OnInit, FormInterface {
     form: FormGroup;
     title;
+    buttonText;
+    userId;
+    isNewUserForm = true;
     user = new User();
 
     constructor(private fb: FormBuilder,
@@ -41,13 +44,18 @@ export class FormComponent implements OnInit, FormInterface {
         this.route.params.subscribe(params => {
             if (!params['id']) {
                 this.title = 'Add user';
+                this.buttonText = 'Add';
                 return;
             } else {
+                this.title = 'Edit user';
+                this.buttonText = 'Edit';
+                this.userId = params['id'];
+                this.isNewUserForm = false;
                 const id = params['id'];
                 this.usersService.getUser(id)
-                    .subscribe(user => {
+                    .subscribe(
+                        user => {
                             this.user = user;
-                            this.title = 'Edit user';
                         },
                         response => {
                             if (response.status === 404) {
@@ -55,22 +63,31 @@ export class FormComponent implements OnInit, FormInterface {
                             }
                         });
             }
-            
         });
     }
 
     hasUnsavedChanges() {
         return this.form.dirty;
     }
+    
+    navigateToUsers() {
+        this.form.markAsPristine();
+        setTimeout(() => {
+            this.router.navigate(['/users']);
+        }, 1000);
+    }
 
     onSubmit(form) {
-        this.usersService.saveUser(form.value)
+        let result;
+        if (this.isNewUserForm) {
+            result = this.usersService.saveUser(form.value);
+        } else {
+            result = this.usersService.updateUser(form.value, this.userId);
+        }
+        result
             .subscribe(data => {
                 console.log(data);
-                this.form.markAsPristine();
-                setTimeout(() => {
-                    this.router.navigate(['/users']);
-                }, 2000);
+                this.navigateToUsers();
             });
     }
 

@@ -24,5 +24,20 @@ export class UsersComponent implements OnInit {
     onEditClick(user) {
         this.router.navigate(['/users', user.id]);
     }
+    
+    onDeleteClick(userToBeDeleted) {
+        const confirmation = confirm(`Are you sure you want do delete ${userToBeDeleted.name}?`);
+        if (confirmation) {
+            this.usersService.deleteUser(userToBeDeleted.id)
+                .subscribe(() => {
+                    this.users = this.users.filter(user => {
+                        return user.id !== userToBeDeleted.id;
+                    });
+                },
+                error => {
+                    console.log(error);
+                });
+        }
+    }
 
 }
