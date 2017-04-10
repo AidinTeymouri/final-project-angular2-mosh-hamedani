@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {emailValidator} from '../email.validator';
 import {FormInterface} from '../prevent-unsaved-changes-guard.service';
-import {UsersService} from '../users.service';
+import {UsersService} from '../users/users.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../user';
 

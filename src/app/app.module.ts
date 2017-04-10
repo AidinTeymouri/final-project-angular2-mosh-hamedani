@@ -9,9 +9,10 @@ import {HomeComponent} from './home/home.component';
 import {UsersComponent} from './users/users.component';
 import {PostsComponent} from './posts/posts.component';
 import {AppRoutingModule} from './routing/routing.module';
-import {UsersService} from './users.service';
+import {UsersService} from './users/users.service';
 import {FormComponent} from './form/form.component';
 import {PreventUnsavedChangesGuardService} from './prevent-unsaved-changes-guard.service';
+import {PostsService} from './posts/posts.service';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,7 @@ import {PreventUnsavedChangesGuardService} from './prevent-unsaved-changes-guard
         ReactiveFormsModule,
         AppRoutingModule
     ],
-    providers: [UsersService, PreventUnsavedChangesGuardService],
+    providers: [UsersService, PostsService, PreventUnsavedChangesGuardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
