@@ -14,15 +14,18 @@ export class CommentsComponent implements OnInit, OnChanges {
 
     constructor(private commentsService: CommentsService) {
     }
-
-    ngOnInit() {
+    
+    getComments() {
         this.commentsService.getComments(this.id)
             .subscribe(comments => this.comments = comments);
     }
 
+    ngOnInit() {
+        this.getComments();
+    }
+
     ngOnChanges() {
-        this.commentsService.getComments(this.id)
-            .subscribe(comments => this.comments = comments);
+        this.getComments();
     }
     
 }
