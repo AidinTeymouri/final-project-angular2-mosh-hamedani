@@ -1,0 +1,14 @@
+<div
+    class="media"
+    *ngFor="let comment of comments"
+>
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object" [src]="imgSrc + comment.id">
+        </a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">{{comment.name}}</h4>
+        {{comment.body}}
+    </div>
+</div>

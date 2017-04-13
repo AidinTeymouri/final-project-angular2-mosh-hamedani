@@ -14,6 +14,8 @@ import {FormComponent} from './form/form.component';
 import {PreventUnsavedChangesGuardService} from './prevent-unsaved-changes-guard.service';
 import {PostsService} from './posts/posts.service';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { CommentsComponent } from './comments/comments.component';
+import {CommentsService} from './comments/comments.service';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
         UsersComponent,
         PostsComponent,
         FormComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        CommentsComponent
     ],
     imports: [
         BrowserModule,
@@ -31,7 +34,12 @@ import { SpinnerComponent } from './spinner/spinner.component';
         ReactiveFormsModule,
         AppRoutingModule
     ],
-    providers: [UsersService, PostsService, PreventUnsavedChangesGuardService],
+    providers: [
+        UsersService,
+        PostsService,
+        PreventUnsavedChangesGuardService,
+        CommentsService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
