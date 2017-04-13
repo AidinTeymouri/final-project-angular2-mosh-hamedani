@@ -10,9 +10,18 @@ export class PostsService {
         this.url = 'https://jsonplaceholder.typicode.com/posts';
     }
 
-    getPosts() {
+    getPosts(userId?) {
+        if (userId) {
+            return this.http.get(`${this.url}?userId=${userId}`)
+                .map(posts => posts.json());
+        }
         return this.http.get(this.url)
             .map(posts => posts.json());
     }
+    
+    // getPostsByUser(id) {
+    //     return this.http.get(`${this.url}?userId=${id}`)
+    //         .map(posts => posts.json());
+    // }
 
 }

@@ -11,13 +11,18 @@ export class CommentsComponent implements OnInit, OnChanges {
     @Input() id;
     imgSrc = 'http://lorempixel.com/80/80/people?random=';
     comments = [];
+    
+    isLoading = true;
 
     constructor(private commentsService: CommentsService) {
     }
     
     getComments() {
         this.commentsService.getComments(this.id)
-            .subscribe(comments => this.comments = comments);
+            .subscribe(comments => {
+                this.comments = comments;
+                this.isLoading = false;
+            });
     }
 
     ngOnInit() {
@@ -25,6 +30,7 @@ export class CommentsComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
+        this.isLoading = true;
         this.getComments();
     }
     

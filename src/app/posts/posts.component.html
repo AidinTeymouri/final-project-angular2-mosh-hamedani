@@ -2,6 +2,21 @@
     <div class="row">
         <h1 class="text-center">Posts</h1>
         <div class="col-md-6">
+            <div class="form-group">
+                <label for="sel1">Select user:</label>
+                <select
+                    class="form-control" id="sel1" 
+                    (change)="onUserChange($event)"
+                >
+                    <option value="0">All Users</option>
+                    <option
+                        *ngFor="let user of users"
+                        value="{{user.id}}"
+                    >
+                        {{user.name}}
+                    </option>
+                </select>
+            </div>
             <div>
                 <app-spinner [visible]="isLoading"></app-spinner>
             </div>

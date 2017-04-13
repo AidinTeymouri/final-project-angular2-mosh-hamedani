@@ -13,5 +13,5 @@ export class SpinnerComponent implements OnInit {
 
     ngOnInit() {
     }
-
+    
 }
