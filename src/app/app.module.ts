@@ -13,9 +13,10 @@ import {UsersService} from './users/users.service';
 import {FormComponent} from './form/form.component';
 import {PreventUnsavedChangesGuardService} from './prevent-unsaved-changes-guard.service';
 import {PostsService} from './posts/posts.service';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { CommentsComponent } from './comments/comments.component';
+import {SpinnerComponent} from './spinner/spinner.component';
+import {CommentsComponent} from './comments/comments.component';
 import {CommentsService} from './comments/comments.service';
+import {PaginationComponent} from './pagination/pagination.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {CommentsService} from './comments/comments.service';
         PostsComponent,
         FormComponent,
         SpinnerComponent,
-        CommentsComponent
+        CommentsComponent,
+        PaginationComponent
     ],
     imports: [
         BrowserModule,

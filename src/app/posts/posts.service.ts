@@ -19,9 +19,4 @@ export class PostsService {
             .map(posts => posts.json());
     }
     
-    // getPostsByUser(id) {
-    //     return this.http.get(`${this.url}?userId=${id}`)
-    //         .map(posts => posts.json());
-    // }
-
 }

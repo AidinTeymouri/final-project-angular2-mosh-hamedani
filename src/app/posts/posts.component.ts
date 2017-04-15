@@ -8,10 +8,13 @@ import {UsersService} from '../users/users.service';
     styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-    posts: string[];
+    posts = [];
+    postsCount: number;
+    pagedPosts = [];
     users = [];
     isLoading;
     selectedPost;
+    pageSize = 10;
 
     constructor(private postsService: PostsService,
                 private usersService: UsersService) {
@@ -29,6 +32,8 @@ export class PostsComponent implements OnInit {
                 setTimeout(() => {
                     this.isLoading = false;
                     this.posts = posts;
+                    this.pagedPosts = this.getPostsInPage(1);
+                    this.postsCount = posts.length;
                 }, 500);
             });
     }
@@ -51,6 +56,17 @@ export class PostsComponent implements OnInit {
             return;
         }
         this.loadPosts(id);
+    }
+    
+    onPageChanged(page) {
+        this.pagedPosts = this.getPostsInPage(page);
+    }
+    
+    getPostsInPage(page) {
+        const startIndex = (page - 1) * this.pageSize;
+        const endIndex = Math.min(startIndex + this.pageSize, this.posts.length);
+        
+        return this.posts.slice(startIndex, endIndex);
     }
 
 }
