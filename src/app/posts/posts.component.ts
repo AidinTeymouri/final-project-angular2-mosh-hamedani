@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PostsService} from './posts.service';
 import {UsersService} from '../users/users.service';
+import * as _ from 'underscore';
 
 @Component({
     selector: 'app-posts',
@@ -32,7 +33,7 @@ export class PostsComponent implements OnInit {
                 setTimeout(() => {
                     this.isLoading = false;
                     this.posts = posts;
-                    this.pagedPosts = this.getPostsInPage(1);
+                    this.pagedPosts = _.take(this.posts, this.pageSize);
                     this.postsCount = posts.length;
                 }, 500);
             });
@@ -59,14 +60,15 @@ export class PostsComponent implements OnInit {
     }
     
     onPageChanged(page) {
-        this.pagedPosts = this.getPostsInPage(page);
+        const startIndex = (page - 1) * this.pageSize;
+        this.pagedPosts = _.take(_.rest(this.posts, startIndex), this.pageSize);
     }
     
-    getPostsInPage(page) {
-        const startIndex = (page - 1) * this.pageSize;
-        const endIndex = Math.min(startIndex + this.pageSize, this.posts.length);
-        
-        return this.posts.slice(startIndex, endIndex);
-    }
+    // getPostsInPage(page) {
+    //     const startIndex = (page - 1) * this.pageSize;
+    //     const endIndex = Math.min(startIndex + this.pageSize, this.posts.length);
+    //    
+    //     return this.posts.slice(startIndex, endIndex);
+    // }
 
 }
